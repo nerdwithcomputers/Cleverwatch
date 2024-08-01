@@ -24,18 +24,19 @@ void loop() {
 }
 
 void dispTime() {
-  ttgo->tft->setTextSize();
+  ttgo->tft->setTextSize(1);
   byte xpos = 5;
   byte ypos = 5;
 
   RTC_Date tnow = ttgo->rtc->getDateTime();
+
+  uint8_t hourest = tnow.hour-4;
+
   month = (tnow.month < 10) ? String(0)+String(tnow.month) : String(tnow.month);;
   day = (tnow.day < 10) ? String(0)+String(tnow.day) : String(tnow.day);;
-  hour = String(tnow.hour - 4);
+  hour = (hourest < 0) ? String(12 + hourest) : String(hourest);
   minute = (tnow.minute < 10) ? String(0)+String(tnow.minute) : String(tnow.minute);;
   sec = (tnow.second < 10) ? String(0)+String(tnow.second) : String(tnow.second);
-  
-  
 
   String time = hour + ":" + minute + ":" + sec;
   ttgo->tft->drawString(time, xpos, ypos);
