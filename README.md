@@ -4,9 +4,9 @@ features:
   a clock
 
 planned features:
-  alarm
-  web server
-  step counter(maybe)
-  voice recorder
-  osm interface
-  various chat functions
+alarm
+web server
+step counter(maybe)
+voice recorder
+osm interface
+various chat functions
