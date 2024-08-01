@@ -1,11 +1,8 @@
 #include "config.h"
 #include <soc/rtc.h>
 #include <time.h>
-#include <string>
-#include <ostream>
 
 TTGOClass *ttgo;
-String string;
 
 uint8_t hour, minute, sec, day, month;
 
@@ -37,9 +34,8 @@ void dispTime() {
   sec = tnow.second;
   day = tnow.day;
   month = tnow.month;
-  std::ostringstream oss;
-  oss << hour << ':' << minute;
-  ttgo->tft->drawString(oss.str(), xpos, ypos);
+  String time = String(hour) + ":" + String(minute);
+  ttgo->tft->drawString(time, xpos, ypos);
 
   // if(hour<10) ttgo->tft->drawChar('0', xpos, ypos);
   // ttgo->tft->drawNumber(hour, xpos, ypos);
