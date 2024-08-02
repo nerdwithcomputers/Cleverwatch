@@ -16,18 +16,18 @@ void setup() {
   ttgo->rtc->syncToSystem();
   ttgo->tft->setTextColor(0x229c, TFT_BLACK);
   ttgo->openBL();
-
+  lvthings();
   
 }
 
 void loop() {
-  lv_task_handler();
+  // lv_task_handler();
   dispTime();
   delay(17.5);
 }
 
 void lvthings(){
-  lv_obj_t *btn1 = lv_button_create(lv_scr_act(), NULL);
+  lv_obj_t *btn1 = lv_btn_create(lv_scr_act(), NULL);
   lv_obj_set_x(btn1, 30);
   lv_obj_set_y(btn1, 30);
   lv_obj_set_size(btn1, 200, 50);
@@ -42,7 +42,7 @@ void dispTime() {
 
   RTC_Date tnow = ttgo->rtc->getDateTime();
 
-  uint8_t hourest = tnow.hour-tzoffset;
+  int8_t hourest = tnow.hour-tzoffset;
 
   month = (tnow.month < 10) ? String(0)+String(tnow.month) : String(tnow.month);
   day = (tnow.day < 10) ? String(0)+String(tnow.day) : String(tnow.day);
